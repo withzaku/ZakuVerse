@@ -1,0 +1,175 @@
+/* ============================================================
+   ZakuVerse — Home Page Specific Styles
+   ============================================================ */
+
+/* ---- Featured Projects Preview ---- */
+.projects-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.project-preview-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.project-preview-card:hover {
+  border-color: rgba(0,212,255,0.3);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.project-mockup {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  background: linear-gradient(135deg, var(--color-bg-card2), rgba(0,212,255,0.06));
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-mockup .mockup-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.project-mockup .mockup-icon {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 16px rgba(0,212,255,0.3));
+}
+
+.project-preview-info {
+  padding: 20px;
+}
+
+.project-preview-info h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.project-preview-info p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.project-tech {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tech-tag {
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(122,92,255,0.1);
+  border: 1px solid rgba(122,92,255,0.2);
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+/* ---- Testimonial placeholder ---- */
+.testimonials-row {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+
+.testimonial-card {
+  min-width: 300px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  flex-shrink: 0;
+}
+
+.testimonial-stars {
+  color: #FFB800;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.author-info span {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.author-info small {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+/* ---- Tech Stack logos ---- */
+.tech-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+  filter: grayscale(0.5);
+}
+
+.tech-logo-item {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: 8px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  transition: var(--transition);
+}
+
+.tech-logo-item:hover {
+  opacity: 1;
+  filter: none;
+  color: var(--color-primary);
+  border-color: rgba(0,212,255,0.3);
+}
