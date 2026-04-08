@@ -1,28 +1,12 @@
 {
   "version": 2,
-  "buildCommand": "",
-  "outputDirectory": ".",
-  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
   "routes": [
     {
-      "src": "/",
+      "src": "/(.*)",
       "dest": "/index.html"
-    },
-    {
-      "src": "/services",
-      "dest": "/services.html"
-    },
-    {
-      "src": "/tools",
-      "dest": "/tools.html"
-    },
-    {
-      "src": "/portfolio",
-      "dest": "/portfolio.html"
-    },
-    {
-      "src": "/contact",
-      "dest": "/contact.html"
     }
   ]
 }
