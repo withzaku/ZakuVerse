@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 
-const defaultSiteUrl = "https://zakuverse.com";
+const defaultSiteUrl = "https://zaku-verse.vercel.app";
 
 export const siteConfig = {
   name: "ZakuVerse",
   title: "ZakuVerse | Web Development, SEO, Automation, Data Science & Bioinformatics",
   description:
     "ZakuVerse helps founders, freelancers, and businesses solve web development, SEO, automation, scraping, data science, and bioinformatics problems with practical execution.",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? defaultSiteUrl,
+  // Use explicit NEXT_PUBLIC_SITE_URL first, fall back to VERCEL_URL, then the hardcoded default
+  siteUrl:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : defaultSiteUrl),
   locale: "en_US",
   owner: "Sikandar",
   creatorHandle: "@with_zaku",
