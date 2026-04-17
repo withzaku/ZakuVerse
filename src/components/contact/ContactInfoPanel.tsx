@@ -9,7 +9,17 @@ import { CONTACT_EMAIL, CONTACT_PHONE, WHATSAPP_URL } from "@/lib/contact";
 gsap.registerPlugin(ScrollTrigger);
 
 /* ─── Info card data ─── */
-const INFO_CARDS = [
+type InfoCard = {
+  id: string;
+  icon: React.ReactElement;
+  label: string;
+  value: string;
+  href: string | null;
+  external?: boolean;
+  delay: number;
+};
+
+const INFO_CARDS: InfoCard[] = [
   {
     id: "email",
     icon: (
@@ -61,7 +71,7 @@ const INFO_CARDS = [
     href: null,
     delay: 0.36,
   },
-] as const;
+];
 
 export function ContactInfoPanel() {
   const panelRef = useRef<HTMLDivElement>(null);
