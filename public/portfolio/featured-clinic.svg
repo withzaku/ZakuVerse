@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" fill="none">
+  <rect width="1280" height="800" fill="#000000"/>
+  <rect x="70" y="70" width="1140" height="660" rx="28" fill="#020B06" stroke="#0A3320"/>
+  <rect x="110" y="120" width="1060" height="110" rx="18" fill="#000000" stroke="#0A3320"/>
+  <rect x="150" y="155" width="240" height="30" rx="15" fill="#0A3320"/>
+  <rect x="940" y="152" width="190" height="36" rx="18" fill="#00FF66"/>
+  <rect x="110" y="260" width="670" height="420" rx="18" fill="#000000" stroke="#0A3320"/>
+  <rect x="810" y="260" width="360" height="200" rx="18" fill="#000000" stroke="#0A3320"/>
+  <rect x="810" y="480" width="360" height="200" rx="18" fill="#000000" stroke="#0A3320"/>
+  <circle cx="1020" cy="360" r="68" fill="#00FF66" opacity="0.2"/>
+  <path d="M920 360h200M1020 260v200" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+  <text x="120" y="52" fill="#FFFFFF" font-size="32" font-family="Segoe UI, Arial, sans-serif">Clinic Demo Website</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#000000"/>
+  <rect x="85" y="105" width="1030" height="540" rx="24" fill="#020B06" stroke="#0A3320"/>
+  <rect x="125" y="150" width="480" height="450" rx="18" fill="#000000" stroke="#0A3320"/>
+  <rect x="635" y="150" width="440" height="450" rx="18" fill="#000000" stroke="#0A3320"/>
+  <path d="M240 220 C300 280 300 360 240 420 M360 220 C300 280 300 360 360 420" stroke="#00FF66" stroke-width="8" stroke-linecap="round"/>
+  <path d="M260 250h80M250 300h100M260 350h80M250 400h100" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.75"/>
+  <rect x="685" y="210" width="320" height="24" rx="12" fill="#0A3320"/>
+  <rect x="685" y="248" width="250" height="14" rx="7" fill="#00FF66" opacity="0.25"/>
+  <rect x="685" y="275" width="290" height="14" rx="7" fill="#00FF66" opacity="0.25"/>
+  <rect x="685" y="338" width="350" height="220" rx="16" fill="#020B06" stroke="#0A3320"/>
+  <text x="110" y="78" fill="#FFFFFF" font-size="30" font-family="Segoe UI, Arial, sans-serif">GeneAxis Bio Labs</text>
+</svg>

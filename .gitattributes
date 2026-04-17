@@ -1,0 +1,20 @@
+# Normalize line endings: store LF in repo, checkout native on Windows
+* text=auto
+
+# Force LF for web source files regardless of OS
+*.ts   text eol=lf
+*.tsx  text eol=lf
+*.js   text eol=lf
+*.jsx  text eol=lf
+*.mjs  text eol=lf
+*.css  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.mts  text eol=lf
+
+# Binary files — no EOL conversion
+*.png  binary
+*.svg  binary
+*.ico  binary
+*.jpg  binary
+*.webp binary

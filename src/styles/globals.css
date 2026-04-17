@@ -1,0 +1,70 @@
+@config "../../tailwind.config.ts";
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --zv-bg: #000000;
+  --zv-card: #07110a;
+  --zv-muted: #0d1a12;
+  --zv-muted-foreground: #9aa79f;
+  --zv-primary: #33dd66;
+  --zv-primary-glow: rgb(51 221 102 / 0.42);
+}
+
+* {
+  border-color: rgb(51 221 102 / 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans-zv), "Montserrat", "Segoe UI", sans-serif;
+  line-height: 1.6;
+  letter-spacing: 0.002em;
+  background-color: #000000;
+  background-image:
+    radial-gradient(circle at 10% 8%, rgb(51 221 102 / 0.1), transparent 26%),
+    radial-gradient(circle at 94% 48%, rgb(51 221 102 / 0.08), transparent 28%),
+    radial-gradient(circle at 26% 96%, rgb(23 84 47 / 0.12), transparent 30%);
+  color: #fff;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(51 221 102 / 0.34);
+  color: #00160a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orb-spin {
+    animation: none;
+  }
+}
+
+@layer components {
+  .font-heading {
+    font-family: var(--font-sans-zv), "Montserrat", "Segoe UI", sans-serif;
+  }
+
+  .font-mono {
+    font-family: var(--font-sans-zv), "Montserrat", "Segoe UI", sans-serif;
+  }
+
+  .type-h1 {
+    @apply font-heading text-balance text-[clamp(3rem,9vw,7.4rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] text-white;
+  }
+
+  .type-h2 {
+    @apply font-heading text-balance text-[clamp(2rem,5vw,4.3rem)] font-bold uppercase leading-[0.95] tracking-[-0.03em] text-white;
+  }
+
+  .type-body {
+    @apply text-base leading-relaxed text-white/72 sm:text-lg;
+  }
+
+  .type-label {
+    @apply font-mono text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/64;
+  }
+}
