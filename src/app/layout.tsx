@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { AppShell } from "@/components/layout/AppShell";
-import { absoluteUrl, siteConfig } from "@/lib/seo";
+import { absoluteUrl, createAlternates, createSocialImages, siteConfig } from "@/lib/seo";
+import { createGlobalStructuredData, serializeJsonLd } from "@/lib/structuredData";
 import "../styles/globals.css";
 
 const fontSans = Montserrat({
@@ -10,6 +11,8 @@ const fontSans = Montserrat({
   display: "swap",
   weight: ["400", "500", "600", "700", "800"],
 });
+
+const defaultSocialImages = createSocialImages();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -24,9 +27,7 @@ export const metadata: Metadata = {
   creator: siteConfig.owner,
   publisher: siteConfig.name,
   category: "technology",
-  alternates: {
-    canonical: absoluteUrl("/"),
-  },
+  alternates: createAlternates("/"),
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -34,12 +35,14 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: siteConfig.locale,
     type: "website",
+    images: defaultSocialImages,
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
     creator: siteConfig.creatorHandle,
+    images: defaultSocialImages.map((image) => image.url),
   },
 };
 
@@ -48,6 +51,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const globalStructuredData = createGlobalStructuredData();
+
   return (
     <html
       lang="en"
@@ -56,6 +61,13 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-background text-white antialiased">
+        {globalStructuredData.map((entry, index) => (
+          <script
+            key={`structured-data-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serializeJsonLd(entry) }}
+          />
+        ))}
         <AppShell>{children}</AppShell>
       </body>
     </html>
