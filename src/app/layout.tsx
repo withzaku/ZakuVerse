@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import Script from "next/script";
 import { AppShell } from "@/components/layout/AppShell";
 import { absoluteUrl, createAlternates, createSocialImages, siteConfig } from "@/lib/seo";
 import { createGlobalStructuredData, serializeJsonLd } from "@/lib/structuredData";
@@ -65,23 +64,19 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-background text-white antialiased">
+      <head>
         {gaMeasurementId ? (
           <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
-              strategy="beforeInteractive"
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${gaMeasurementId}');`,
+              }}
             />
-            <Script id="google-analytics" strategy="beforeInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaMeasurementId}');
-              `}
-            </Script>
           </>
         ) : null}
+      </head>
+      <body className="min-h-screen bg-background text-white antialiased">
         {globalStructuredData.map((entry, index) => (
           <script
             key={`structured-data-${index}`}
