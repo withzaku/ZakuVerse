@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import Script from "next/script";
 import { AppShell } from "@/components/layout/AppShell";
 import { absoluteUrl, createAlternates, createSocialImages, siteConfig } from "@/lib/seo";
 import { createGlobalStructuredData, serializeJsonLd } from "@/lib/structuredData";
@@ -55,6 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const globalStructuredData = createGlobalStructuredData();
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "";
 
   return (
     <html
@@ -64,6 +66,22 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-background text-white antialiased">
+        {gaMeasurementId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="beforeInteractive"
+            />
+            <Script id="google-analytics" strategy="beforeInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaMeasurementId}');
+              `}
+            </Script>
+          </>
+        ) : null}
         {globalStructuredData.map((entry, index) => (
           <script
             key={`structured-data-${index}`}
