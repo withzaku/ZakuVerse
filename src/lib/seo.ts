@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
 
 const defaultSiteUrl = "https://zaku-verse.vercel.app";
-const vercelDeploymentUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined;
-const resolvedSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_ENV === "production" ? defaultSiteUrl : vercelDeploymentUrl || defaultSiteUrl);
+const resolvedSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || defaultSiteUrl;
 
 export const siteConfig = {
   name: "ZakuVerse",
   title: "ZakuVerse | Web Development, AI Automation, SEO, Data Science & Bioinformatics",
   description:
     "ZakuVerse helps founders, freelancers, and businesses solve web development, AI automation, AI agent development, machine learning, SEO, data science, and bioinformatics problems with practical execution.",
-  // Use explicit NEXT_PUBLIC_SITE_URL first. In production, prefer canonical domain.
-  // Use VERCEL_URL fallback only for non-production deployments.
+  // Use explicit NEXT_PUBLIC_SITE_URL first; otherwise use canonical default domain.
   siteUrl: resolvedSiteUrl,
   locale: "en_US",
   language: "en",
