@@ -44,6 +44,9 @@ export const metadata: Metadata = {
     creator: siteConfig.creatorHandle,
     images: defaultSocialImages.map((image) => image.url),
   },
+  verification: {
+    google: "BCaGI_n10mMF2g0e4aN9UZxQ0oTOM252W2KF9RDl2FM",
+  },
 };
 
 export default function RootLayout({
