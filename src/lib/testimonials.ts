@@ -12,34 +12,14 @@ export type Testimonial = {
 
 export const testimonialPlaceholders: Testimonial[] = [
   {
-    id: "placeholder-nextjs",
-    clientName: "[CLIENT NAME]",
-    company: "[COMPANY]",
-    role: "Founder",
-    result: "[RESULT]",
+    id: "genomics-informatics-lab-athar-mutahari",
+    clientName: "Prof Dr. Athar Mutahari",
+    company: "Genomics and Informatics Lab",
+    role: "Professor",
+    result: "Stronger technical execution support for genomics and informatics workflows",
     quote:
-      "ZakuVerse helped us stabilize our technical stack and improve conversion pathways. [RESULT] was the clearest business impact from the engagement.",
-    service: "Next.js Development",
-  },
-  {
-    id: "placeholder-seo",
-    clientName: "[CLIENT NAME]",
-    company: "[COMPANY]",
-    role: "Marketing Lead",
-    result: "[RESULT]",
-    quote:
-      "The technical SEO process was clear, implementation-focused, and measurable. Within the first cycle we observed [RESULT] in our priority routes.",
-    service: "Technical SEO Consulting",
-  },
-  {
-    id: "placeholder-automation",
-    clientName: "[CLIENT NAME]",
-    company: "[COMPANY]",
-    role: "Operations Manager",
-    result: "[RESULT]",
-    quote:
-      "Automation delivery reduced handoff friction and gave us cleaner reporting visibility. The operational outcome was [RESULT] after rollout.",
-    service: "AI Automation",
+      "ZakuVerse provided implementation-first support that helped us move genomic and informatics workstreams forward with clearer technical execution.",
+    service: "Bioinformatics Consulting",
   },
 ];
 

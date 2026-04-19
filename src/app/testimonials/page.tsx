@@ -44,8 +44,7 @@ export default function TestimonialsPage() {
           <p className="type-label text-primary">Testimonials</p>
           <h1 className="type-h1 text-[clamp(2.2rem,6vw,4.8rem)]">Client Proof Library</h1>
           <p className="type-body max-w-3xl text-white/74">
-            Placeholder cards are set in [CLIENT NAME], [COMPANY], [RESULT] format so verified client proof can be
-            dropped in directly as it is approved.
+            Verified client feedback from implementation engagements across technical delivery and measurable outcomes.
           </p>
           <div className="flex flex-wrap gap-3 text-sm text-white/80">
             <Link href="/tools" className="underline underline-offset-4">Audit Tools</Link>

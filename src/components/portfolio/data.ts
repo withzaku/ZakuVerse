@@ -8,24 +8,24 @@ export type PortfolioProject = {
 
 export const portfolioProjects: PortfolioProject[] = [
   {
-    title: "QuantumFlow SaaS",
-    description: "Website and onboarding revamp that improved trial sign-up quality and reduced bounce rate.",
+    title: "Genomatics Platform",
+    description: "Bioinformatics-focused web platform delivery with clear information architecture and technical execution.",
     image: "/portfolio/project-quantumflow.svg",
-    href: "https://sikandar-zulqarnain-portfolio.vercel.app/",
-    tag: "SaaS Growth",
-  },
-  {
-    title: "AutoPilot AI",
-    description: "Conversion-focused product pages and automation funnels built to capture higher-intent leads.",
-    image: "/portfolio/project-autopilot.svg",
-    href: "https://sikandar-zulqarnain-portfolio.vercel.app/",
-    tag: "AI Automation",
-  },
-  {
-    title: "GeneAxis Bio Labs",
-    description: "Modern research showcase platform that strengthened credibility with partners and investors.",
-    image: "/portfolio/project-geneaxis.svg",
-    href: "https://sikandar-zulqarnain-portfolio.vercel.app/",
+    href: "https://genomatics.net/",
     tag: "Bioinformatics",
+  },
+  {
+    title: "GIL LMS Database System",
+    description: "Operational database interface deployment focused on usability, structured data entry, and internal workflow support.",
+    image: "/portfolio/project-autopilot.svg",
+    href: "https://gil-lms.vercel.app/",
+    tag: "Database System",
+  },
+  {
+    title: "ZakuVerse Official Website",
+    description: "Conversion-first brand website implementation covering services, portfolio structure, and technical SEO foundations.",
+    image: "/portfolio/project-geneaxis.svg",
+    href: "https://zaku-verse.vercel.app/",
+    tag: "Web Development",
   },
 ];

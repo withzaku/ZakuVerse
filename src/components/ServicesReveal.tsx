@@ -110,6 +110,26 @@ export function ServicesReveal({
         >
           Built For Teams That Care About Outcomes.
         </h3>
+
+        <p className="max-w-2xl text-[1rem] leading-relaxed text-white/72 sm:text-lg">
+          Teams choose ZakuVerse because delivery stays implementation-first: faster launches, cleaner technical
+          architecture, and measurable movement in visibility, lead quality, and operational efficiency.
+        </p>
+
+        <div className="grid gap-3 sm:max-w-2xl sm:grid-cols-2">
+          <p className="rounded-xl border border-primary/25 bg-black/35 px-4 py-3 text-sm text-white/80">
+            End-to-end execution across web, AI, SEO, and bioinformatics.
+          </p>
+          <p className="rounded-xl border border-primary/25 bg-black/35 px-4 py-3 text-sm text-white/80">
+            Outcome tracking focused on real business signals, not vanity metrics.
+          </p>
+          <p className="rounded-xl border border-primary/25 bg-black/35 px-4 py-3 text-sm text-white/80">
+            Fast communication and practical iteration during every delivery phase.
+          </p>
+          <p className="rounded-xl border border-primary/25 bg-black/35 px-4 py-3 text-sm text-white/80">
+            Technical depth with founder-friendly guidance and transparent scope.
+          </p>
+        </div>
       </div>
     </>
   );

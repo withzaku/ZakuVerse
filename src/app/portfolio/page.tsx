@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout";
 import {
-  BeforeAfterSection,
-  FeaturedProjectSection,
   PortfolioCtaSection,
   PortfolioHeroSection,
   ProjectsGridSection,
@@ -76,8 +74,6 @@ export default function PortfolioPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeSchema(portfolioFaqSchema) }} />
       <PortfolioHeroSection />
       <ProjectsGridSection />
-      <FeaturedProjectSection />
-      <BeforeAfterSection />
       <section className="py-10 sm:py-14">
         <Container>
           <div className="mb-6 max-w-4xl space-y-2">
