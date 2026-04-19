@@ -9,6 +9,34 @@
   --zv-muted-foreground: #9aa79f;
   --zv-primary: #33dd66;
   --zv-primary-glow: rgb(51 221 102 / 0.42);
+  --zv-hero-bg-base:
+    radial-gradient(circle at 20% 10%, rgba(70,255,125,0.18), transparent 32%),
+    radial-gradient(circle at 82% 54%, rgba(48,188,95,0.14), transparent 34%),
+    radial-gradient(circle at 58% 90%, rgba(11,51,24,0.5), transparent 42%),
+    linear-gradient(160deg, #0a1a0a 0%, #020703 40%, #000000 100%);
+  --zv-hero-bg-cool:
+    radial-gradient(circle at 70% 20%, rgba(120,255,180,0.16), transparent 34%),
+    radial-gradient(circle at 28% 72%, rgba(40,200,100,0.12), transparent 36%),
+    linear-gradient(150deg, rgba(0,20,8,0.96) 0%, rgba(0,58,26,0.4) 55%, rgba(0,10,4,0.97) 100%);
+}
+
+html.light {
+  color-scheme: light;
+  --zv-bg: #f8fff9;
+  --zv-card: #ffffff;
+  --zv-muted: #e9f8ee;
+  --zv-muted-foreground: #2f4237;
+  --zv-primary: #1fa951;
+  --zv-primary-glow: rgb(31 169 81 / 0.28);
+  --zv-hero-bg-base:
+    radial-gradient(circle at 10% 8%, rgba(31,169,81,0.18), transparent 30%),
+    radial-gradient(circle at 92% 44%, rgba(31,169,81,0.14), transparent 34%),
+    radial-gradient(circle at 30% 96%, rgba(0,0,0,0.06), transparent 30%),
+    linear-gradient(160deg, #f8fff9 0%, #f4fff7 46%, #ecfdf2 100%);
+  --zv-hero-bg-cool:
+    radial-gradient(circle at 72% 22%, rgba(51,221,102,0.2), transparent 34%),
+    radial-gradient(circle at 24% 74%, rgba(31,169,81,0.12), transparent 38%),
+    linear-gradient(150deg, rgba(255,255,255,0.98) 0%, rgba(236,253,242,0.95) 56%, rgba(248,255,249,0.98) 100%);
 }
 
 * {
@@ -32,9 +60,44 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+html.light body {
+  background-color: #f8fff9;
+  background-image:
+    radial-gradient(circle at 8% 8%, rgb(51 221 102 / 0.12), transparent 28%),
+    radial-gradient(circle at 95% 52%, rgb(51 221 102 / 0.08), transparent 32%),
+    radial-gradient(circle at 24% 94%, rgb(0 0 0 / 0.08), transparent 28%);
+  color: #0c1d13;
+}
+
+/* Force broad utility overrides in light mode so the entire site flips from dark to light. */
+html.light [class*="bg-black"] {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+html.light [class*="text-white"] {
+  color: #0b1a11 !important;
+}
+
+html.light [class*="border-white"] {
+  border-color: rgba(11, 26, 17, 0.2) !important;
+}
+
+html.light [class*="shadow-[0_0_"] {
+  box-shadow: 0 0 28px rgba(31, 169, 81, 0.12) !important;
+}
+
+html.light a {
+  color: #0f7b3d;
+}
+
 ::selection {
   background: rgb(51 221 102 / 0.34);
   color: #00160a;
+}
+
+html.light ::selection {
+  background: rgb(31 169 81 / 0.24);
+  color: #041108;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -66,5 +129,18 @@ body {
 
   .type-label {
     @apply font-mono text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/64;
+  }
+
+  html.light .type-h1,
+  html.light .type-h2 {
+    color: #0b1a11;
+  }
+
+  html.light .type-body {
+    color: rgb(11 26 17 / 0.75);
+  }
+
+  html.light .type-label {
+    color: rgb(11 26 17 / 0.64);
   }
 }

@@ -177,11 +177,7 @@ export function ScrollExperience() {
                 aria-hidden
                 className="absolute inset-0 -z-20"
                 style={{
-                  background:
-                    "radial-gradient(circle at 20% 10%, rgba(70,255,125,0.18), transparent 32%), " +
-                    "radial-gradient(circle at 82% 54%, rgba(48,188,95,0.14), transparent 34%), " +
-                    "radial-gradient(circle at 58% 90%, rgba(11,51,24,0.5), transparent 42%), " +
-                    "linear-gradient(160deg, #0a1a0a 0%, #020703 40%, #000000 100%)",
+                  background: "var(--zv-hero-bg-base)",
                 }}
               />
 
@@ -191,10 +187,7 @@ export function ScrollExperience() {
                 aria-hidden
                 className="absolute inset-0 -z-10"
                 style={{
-                  background:
-                    "radial-gradient(circle at 70% 20%, rgba(120,255,180,0.16), transparent 34%), " +
-                    "radial-gradient(circle at 28% 72%, rgba(40,200,100,0.12), transparent 36%), " +
-                    "linear-gradient(150deg, rgba(0,20,8,0.96) 0%, rgba(0,58,26,0.4) 55%, rgba(0,10,4,0.97) 100%)",
+                  background: "var(--zv-hero-bg-cool)",
                 }}
               />
 

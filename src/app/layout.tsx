@@ -72,15 +72,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const globalSchemaGraph = createGlobalSchemaGraph();
+  const themeInitScript = `
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem("zv-theme");
+        var preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        var theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : preferred;
+        var root = document.documentElement;
+        root.classList.remove("light", "dark");
+        root.classList.add(theme);
+      } catch (error) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  `;
 
   return (
     <html
       lang="en"
-      className={`${fontSans.variable} dark`}
+      className={fontSans.variable}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <head>
+        <Script id="zakuverse-theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
         <Script id="zakuverse-schema-graph" type="application/ld+json" strategy="beforeInteractive">
           {serializeSchema(globalSchemaGraph)}
         </Script>
