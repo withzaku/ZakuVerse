@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { StaggerReveal } from "@/components/animations";
 import { Container } from "@/components/layout";
@@ -6,22 +5,19 @@ import { buttonClassName, Section } from "@/components/ui";
 
 const projects = [
   {
-    title: "QuantumFlow SaaS",
-    description: "Redesigned onboarding and product pages, increasing qualified demo requests by 38%.",
-    image: "/portfolio/project-quantumflow.svg",
-    href: "/portfolio",
+    title: "Genomatics Website",
+    description: "Website built during internship at Genomics and Informatics Lab with research-focused structure and clarity.",
+    href: "https://genomatics.net/",
   },
   {
-    title: "AutoPilot AI",
-    description: "Built a conversion-first marketing funnel and automation stack for AI lead capture.",
-    image: "/portfolio/project-autopilot.svg",
-    href: "/portfolio",
+    title: "GIL LMS Database System",
+    description: "Employee database system implementation focused on structured records and internal workflow support.",
+    href: "https://gil-lms.vercel.app/",
   },
   {
-    title: "GeneAxis Bio Labs",
-    description: "Created a clear research showcase platform to strengthen investor and partner trust.",
-    image: "/portfolio/project-geneaxis.svg",
-    href: "/portfolio",
+    title: "ZakuVerse Website",
+    description: "Own studio website built in Next.js to present services, technical execution, and transparent growth.",
+    href: "https://zaku-verse.vercel.app/",
   },
 ];
 
@@ -42,15 +38,10 @@ export function PortfolioPreviewSection() {
               data-stagger-item
               className="group overflow-hidden rounded-none border border-white/14 bg-white/[0.02] transition-all duration-300 hover:border-primary/45 hover:shadow-[0_0_28px_rgba(0,255,136,0.15)]"
             >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-black/68 opacity-82 transition-opacity duration-300 group-hover:opacity-92" />
+              <div className="border-b border-white/10 bg-black/35 px-6 py-4">
+                <span className="border border-white/20 bg-black/40 px-3 py-1 text-xs uppercase tracking-[0.18em] text-white/76">
+                  Real Project
+                </span>
               </div>
 
               <div className="space-y-4 p-6">
@@ -58,13 +49,15 @@ export function PortfolioPreviewSection() {
                 <p className="text-sm leading-relaxed text-white/66">{project.description}</p>
                 <Link
                   href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={buttonClassName({
                     variant: "secondary",
                     size: "sm",
                     className: "w-full justify-center group-hover:border-primary/40 group-hover:text-primary",
                   })}
                 >
-                  View Project
+                  View Live Project
                 </Link>
               </div>
             </article>
