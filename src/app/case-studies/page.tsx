@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createBreadcrumbSchema, createWebPageSchema, serializeSchema } from "@/lib/schema";
 import { createPageMetadata } from "@/lib/seo";
 import { CaseStudiesLiveSearch } from "./CaseStudiesLiveSearch";
 
@@ -18,5 +19,26 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function CaseStudiesPage() {
-  return <CaseStudiesLiveSearch />;
+  const caseStudiesBreadcrumbSchema = createBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Case Studies", path: "/case-studies" },
+  ]);
+  const caseStudiesWebPageSchema = createWebPageSchema({
+    path: "/case-studies",
+    name: "ZakuVerse Case Studies",
+    description:
+      "Case study library with AI search optimization, technical SEO, multilingual visibility, and crawl diagnostics proof assets.",
+    type: "CollectionPage",
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeSchema(caseStudiesBreadcrumbSchema) }}
+      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeSchema(caseStudiesWebPageSchema) }} />
+      <CaseStudiesLiveSearch />
+    </>
+  );
 }

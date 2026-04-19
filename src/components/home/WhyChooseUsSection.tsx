@@ -4,20 +4,20 @@ import { Section } from "@/components/ui";
 
 const valuePoints = [
   {
-    title: "Fast Delivery",
-    description: "Lean execution model that moves from strategy to launch without unnecessary delays.",
+    title: "14-Day Signal Reviews",
+    description: "Every implementation wave is followed by a 14-day review loop to validate crawl, index, and conversion movement.",
   },
   {
-    title: "Modern Tech Stack",
-    description: "Built with scalable architecture using modern frontend and automation tooling.",
+    title: "4 Core Technical Lanes",
+    description: "Web development, AI automation, technical SEO, and bioinformatics are delivered as one connected execution system.",
   },
   {
-    title: "Scalable Solutions",
-    description: "Systems designed to support business growth, higher traffic, and product expansion.",
+    title: "45+ Build Iterations Delivered",
+    description: "Production-ready route and feature iterations shipped across service businesses, growth teams, and technical operators.",
   },
   {
-    title: "Client-Focused Approach",
-    description: "Clear communication, transparent milestones, and decisions aligned with your goals.",
+    title: "5 Priority Markets Supported",
+    description: "Execution adapted for Pakistan, US, UK, Canada, and Australia search behavior and conversion pathways.",
   },
 ];
 
@@ -26,7 +26,7 @@ export function WhyChooseUsSection() {
     <Section spacing="md" animation="fadeIn" className="pt-2">
       <Container>
         <div className="mb-12 max-w-3xl space-y-4">
-          <p className="type-label text-primary">Why Choose Us</p>
+          <p className="type-label text-primary">Why ZakuVerse</p>
           <h2 className="type-h2">Built for teams that care about outcomes.</h2>
         </div>
 

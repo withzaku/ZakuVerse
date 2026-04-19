@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@/components/Analytics";
+import { Clarity } from "@/components/Clarity";
 import { AppShell } from "@/components/layout/AppShell";
 import { absoluteUrl, createAlternates, createSocialImages, siteConfig } from "@/lib/seo";
-import { createGlobalStructuredData, serializeJsonLd } from "@/lib/structuredData";
+import { createGlobalSchemaGraph, serializeSchema } from "@/lib/schema";
 import "../styles/globals.css";
 
 const fontSans = Montserrat({
@@ -16,6 +20,18 @@ const defaultSocialImages = createSocialImages();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
+  icons: {
+    icon: [
+      { url: "/favico.png?v=20260419a", type: "image/png" },
+    ],
+    shortcut: "/favico.png?v=20260419a",
+    apple: [{ url: "/favico.png?v=20260419a", type: "image/png" }],
+    other: [
+      { rel: "manifest", url: "/favicon_io/site.webmanifest" },
+      { rel: "icon", url: "/favicon_io/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { rel: "icon", url: "/favicon_io/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+  },
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.name}`,
@@ -54,8 +70,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const globalStructuredData = createGlobalStructuredData();
-  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "";
+  const globalSchemaGraph = createGlobalSchemaGraph();
 
   return (
     <html
@@ -65,26 +80,15 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {gaMeasurementId ? (
-          <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${gaMeasurementId}');`,
-              }}
-            />
-          </>
-        ) : null}
+        <Script id="zakuverse-schema-graph" type="application/ld+json" strategy="beforeInteractive">
+          {serializeSchema(globalSchemaGraph)}
+        </Script>
       </head>
       <body className="min-h-screen bg-background text-white antialiased">
-        {globalStructuredData.map((entry, index) => (
-          <script
-            key={`structured-data-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: serializeJsonLd(entry) }}
-          />
-        ))}
+        <Analytics />
+        <Clarity />
         <AppShell>{children}</AppShell>
+        <SpeedInsights />
       </body>
     </html>
   );

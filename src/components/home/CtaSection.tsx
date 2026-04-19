@@ -1,6 +1,7 @@
-import Link from "next/link";
 import { Container } from "@/components/layout";
+import { TransitionLink } from "@/components/layout/TransitionLink";
 import { buttonClassName, Section } from "@/components/ui";
+import { trackCTAClick } from "@/lib/analytics";
 
 export function CtaSection() {
   return (
@@ -12,8 +13,9 @@ export function CtaSection() {
             <h2 className="type-h2">Ready to Build Your Next Project?</h2>
             <p className="type-body text-white/68">Let&apos;s create something powerful together.</p>
             <div className="pt-3">
-              <Link
+              <TransitionLink
                 href="/contact"
+                onBeforeNavigate={() => trackCTAClick("start-your-project", "/")}
                 className={buttonClassName({
                   variant: "gradient",
                   size: "lg",
@@ -21,7 +23,7 @@ export function CtaSection() {
                 })}
               >
                 Start Your Project
-              </Link>
+              </TransitionLink>
             </div>
           </div>
         </div>

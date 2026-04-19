@@ -62,7 +62,11 @@ export function runHeroIntroAnimation(targets: HeroIntroTargets) {
 }
 
 export function setupHeroParallax({ root, content, scene }: HeroParallaxTargets) {
-  if (typeof window === "undefined" || !window.matchMedia("(pointer: fine)").matches) {
+  if (
+    typeof window === "undefined" ||
+    !window.matchMedia("(pointer: fine)").matches ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
     return () => {};
   }
 

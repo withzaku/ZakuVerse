@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
+import { trackContactFormSubmit } from "@/lib/analytics";
 import { FormField } from "./FormField";
 import { FormTextarea } from "./FormTextarea";
 
@@ -82,6 +83,7 @@ export function ContactForm() {
       const res    = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(values) });
       const result = (await res.json()) as { message?: string; error?: string };
       if (!res.ok) { setSubmit("error"); setErrors({ form: result.error ?? "Unable to send. Please try WhatsApp." }); return; }
+      trackContactFormSubmit();
       setSubmit("success");
       setValues(initialValues);
       setErrors({});

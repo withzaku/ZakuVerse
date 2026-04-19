@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout";
 import { buttonClassName } from "@/components/ui";
-import { absoluteUrl, createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo";
 import {
   createMultilingualAiVisibilityStructuredData,
   serializeJsonLd,
@@ -21,11 +21,6 @@ export const metadata: Metadata = createPageMetadata({
     "localized ai seo",
     "international ai search seo",
   ],
-  alternatesLanguages: {
-    en: absoluteUrl("/multilingual-ai-visibility"),
-    ur: absoluteUrl("/multilingual-ai-visibility"),
-    "x-default": absoluteUrl("/multilingual-ai-visibility"),
-  },
 });
 
 const englishIntentSignals = [

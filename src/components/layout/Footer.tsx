@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 
 export function Footer() {
@@ -10,12 +10,21 @@ export function Footer() {
             <p className="type-label text-white/72">ZakuVerse</p>
             <p className="mt-3 max-w-md text-sm text-white/62">Where Code, AI &amp; Biology Converge.</p>
           </div>
-          <div className="font-sans flex items-center gap-6 text-sm font-medium text-white/72">
+          <div className="font-sans flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium text-white/72">
+            <Link href="/" className="transition-colors hover:text-white">
+              Home
+            </Link>
             <Link href="/about" className="transition-colors hover:text-white">
               About
             </Link>
             <Link href="/services" className="transition-colors hover:text-white">
               Services
+            </Link>
+            <Link href="/blog" className="transition-colors hover:text-white">
+              Blog
+            </Link>
+            <Link href="/tools" className="transition-colors hover:text-white">
+              Tools
             </Link>
             <Link href="/ai-search-optimization" className="transition-colors hover:text-white">
               AI SEO
@@ -23,8 +32,17 @@ export function Footer() {
             <Link href="/case-studies" className="transition-colors hover:text-white">
               Case Studies
             </Link>
-            <Link href="/methology" className="transition-colors hover:text-white">
-              Methology
+            <Link href="/methodology" className="transition-colors hover:text-white">
+              Methodology
+            </Link>
+            <Link href="/resources" className="transition-colors hover:text-white">
+              Resources
+            </Link>
+            <Link href="/testimonials" className="transition-colors hover:text-white">
+              Testimonials
+            </Link>
+            <Link href="/about/sikandar" className="transition-colors hover:text-white">
+              Author
             </Link>
             <Link href="/portfolio" className="transition-colors hover:text-white">
               Portfolio
@@ -38,3 +56,4 @@ export function Footer() {
     </footer>
   );
 }
+

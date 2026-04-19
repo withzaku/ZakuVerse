@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout";
 import { buttonClassName } from "@/components/ui";
+import { createBreadcrumbSchema, createWebPageSchema, serializeSchema } from "@/lib/schema";
 import { absoluteUrl, createPageMetadata, siteConfig } from "@/lib/seo";
 import { serializeJsonLd, type FaqEntry } from "@/lib/structuredData";
 
@@ -89,6 +90,11 @@ const faqEntries: FaqEntry[] = [
     answer:
       "That is a common engagement model. ZakuVerse is designed for integrated execution where technical SEO and web development reinforce each other.",
   },
+  {
+    question: "Where can I review Sikandar's credentials and published articles?",
+    answer:
+      "You can review the full author profile, credentials, and all published technical articles on the dedicated /about/sikandar page.",
+  },
 ];
 
 export default function AboutPage() {
@@ -152,6 +158,19 @@ export default function AboutPage() {
     })),
   };
 
+  const breadcrumbStructuredData = createBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+  ]);
+
+  const webPageStructuredData = createWebPageSchema({
+    path: "/about",
+    name: "About ZakuVerse",
+    description:
+      "Background, capabilities, and operating model for ZakuVerse and founder-led delivery across web development, AI visibility, and technical SEO.",
+    type: "AboutPage",
+  });
+
   return (
     <>
       {[aboutPageStructuredData, personStructuredData, faqStructuredData].map((entry, index) => (
@@ -161,6 +180,11 @@ export default function AboutPage() {
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(entry) }}
         />
       ))}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeSchema(breadcrumbStructuredData) }}
+      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeSchema(webPageStructuredData) }} />
 
       <section className="pt-20 sm:pt-24 lg:pt-28 pb-10 sm:pb-12">
         <Container>
@@ -191,6 +215,15 @@ export default function AboutPage() {
                 })}
               >
                 Explore Services
+              </Link>
+              <Link
+                href="/about/sikandar"
+                className={buttonClassName({
+                  variant: "secondary",
+                  size: "md",
+                })}
+              >
+                Author Profile
               </Link>
               <Link
                 href="/case-studies"

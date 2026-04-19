@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout";
 import { buttonClassName } from "@/components/ui";
-import { absoluteUrl, createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo";
 import {
   createMultilingualAiVisibilityCaseStudyStructuredData,
   serializeJsonLd,
@@ -19,11 +19,6 @@ export const metadata: Metadata = createPageMetadata({
     "english urdu intent mapping",
     "localized ai seo results",
   ],
-  alternatesLanguages: {
-    en: absoluteUrl("/case-studies/multilingual-ai-visibility"),
-    ur: absoluteUrl("/case-studies/multilingual-ai-visibility"),
-    "x-default": absoluteUrl("/case-studies/multilingual-ai-visibility"),
-  },
 });
 
 const languageMetrics = [

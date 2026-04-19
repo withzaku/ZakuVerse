@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout";
-import { buttonClassName } from "@/components/ui";
+import { QuickAnswerBlock, buttonClassName } from "@/components/ui";
+import { createSpeakableSchema, serializeSchema } from "@/lib/schema";
 import { createPageMetadata } from "@/lib/seo";
 import {
   createAiCrawlerLogAnalysisStructuredData,
@@ -57,6 +58,13 @@ const deliverables = [
   "14-day action plan with exact technical remediation priorities",
 ];
 
+const quickAnswerFacts = [
+  "Audit window: use 14-30 days of access logs for stable crawl-pattern detection.",
+  "Primary diagnosis: confirm whether bots spend enough requests on revenue routes.",
+  "Primary output: top waste clusters, canonical conflicts, and route-priority fix queue.",
+  "Primary KPI: increase high-value recrawl cadence while reducing low-value crawl drift.",
+];
+
 const faqEntries: FaqEntry[] = [
   {
     question: "What is AI crawler log analysis?",
@@ -82,6 +90,11 @@ const faqEntries: FaqEntry[] = [
 
 export default function AiCrawlerLogAnalysisPage() {
   const structuredData = createAiCrawlerLogAnalysisStructuredData(faqEntries);
+  const speakableSchema = createSpeakableSchema({
+    path: "/ai-crawler-log-analysis",
+    name: "AI Crawler Log Analysis Quick Answer",
+    cssSelectors: ["#quick-answer-crawler-analysis h2", "#quick-answer-crawler-analysis p", "#quick-answer-crawler-analysis li"],
+  });
 
   return (
     <>
@@ -92,6 +105,7 @@ export default function AiCrawlerLogAnalysisPage() {
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(entry) }}
         />
       ))}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeSchema(speakableSchema) }} />
 
       <section className="pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-10">
         <Container>
@@ -101,9 +115,24 @@ export default function AiCrawlerLogAnalysisPage() {
               See How Crawlers Really Read Your Website, Then Fix What Matters.
             </h1>
             <p className="type-body max-w-3xl text-white/74">
-              If your best pages are not getting consistent crawl attention, rankings and AI citations will remain
-              unstable. This service maps real crawler behavior and turns technical noise into prioritized fixes.
+              AI crawler log analysis is the fastest way to verify whether search systems are actually discovering your
+              most important routes. Instead of relying on assumptions, this service inspects real bot request
+              behavior across your logs to identify crawl waste, recrawl gaps, and indexation risks tied to
+              commercial pages. The goal is operational clarity: which URL groups are over-crawled, which high-value
+              routes are under-visited, and which technical signals are creating ambiguity for index selection. Output
+              is implementation-ready, including prioritized fix queues for redirects, canonicals, sitemap alignment,
+              and internal route weighting. For AI-era discovery, this matters because citation stability depends on
+              consistent fetch, clear page hierarchy, and trustworthy signals over time. If rankings fluctuate despite
+              content improvements, crawler behavior is usually the missing diagnostic layer.
             </p>
+
+            <QuickAnswerBlock
+              id="quick-answer-crawler-analysis"
+              title="Quick Answer: What does crawler log analysis fix first?"
+              summary="It fixes crawl allocation before content expansion by identifying where bots waste requests, where high-value routes are ignored, and which technical signals are causing index instability."
+              facts={quickAnswerFacts}
+            />
+
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 href="/contact"

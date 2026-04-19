@@ -1,13 +1,27 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HeroText } from "@/components/HeroText";
+import {
+  CtaSection,
+  HomeQuickAnswerSection,
+  HowItWorksSection,
+  PortfolioPreviewSection,
+  ServicesSection,
+  TestimonialsStripSection,
+  WhyChooseUsSection,
+} from "@/components/home";
 import { Footer, Navbar } from "@/components/layout";
+import { Container } from "@/components/layout/Container";
+import { TransitionLink } from "@/components/layout/TransitionLink";
 import { NeuralBall, type NeuralBallMotion } from "@/components/NeuralBall";
 import { ServicesReveal } from "@/components/ServicesReveal";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { trackCTAClick } from "@/lib/analytics";
 
 export function ScrollExperience() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
   const scopeRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const viewportStageRef = useRef<HTMLDivElement>(null);
@@ -19,6 +33,8 @@ export function ScrollExperience() {
   const heroRootRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const heroSubtitleRef = useRef<HTMLParagraphElement>(null);
+  const heroDescriptionRef = useRef<HTMLParagraphElement>(null);
+  const heroServicesRef = useRef<HTMLParagraphElement>(null);
   const heroCtaRef = useRef<HTMLDivElement>(null);
 
   const servicesRootRef = useRef<HTMLDivElement>(null);
@@ -32,7 +48,6 @@ export function ScrollExperience() {
   const whyLabelRef = useRef<HTMLParagraphElement>(null);
   const whyHeadingRef = useRef<HTMLHeadingElement>(null);
 
-
   const ballMotionRef = useRef<NeuralBallMotion>({
     tiltX: 0.24,
     tiltZ: 0.08,
@@ -40,7 +55,30 @@ export function ScrollExperience() {
     spinBoost: 0.08,
   });
 
+  useEffect(() => {
+    const motionMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const updateMotionPreference = () => {
+      setPrefersReducedMotion(motionMediaQuery.matches);
+    };
+
+    updateMotionPreference();
+
+    if (typeof motionMediaQuery.addEventListener === "function") {
+      motionMediaQuery.addEventListener("change", updateMotionPreference);
+      return () => {
+        motionMediaQuery.removeEventListener("change", updateMotionPreference);
+      };
+    }
+
+    motionMediaQuery.addListener(updateMotionPreference);
+    return () => {
+      motionMediaQuery.removeListener(updateMotionPreference);
+    };
+  }, []);
+
   useScrollAnimation({
+    enabled: !prefersReducedMotion,
     scopeRef,
     scrollContainerRef,
     viewportStageRef,
@@ -51,6 +89,8 @@ export function ScrollExperience() {
     heroRootRef,
     heroTitleRef,
     heroSubtitleRef,
+    heroDescriptionRef,
+    heroServicesRef,
     heroCtaRef,
     servicesRootRef,
     servicesLabelRef,
@@ -62,6 +102,62 @@ export function ScrollExperience() {
     whyLabelRef,
     whyHeadingRef,
   });
+
+  if (prefersReducedMotion) {
+    return (
+      <section className="relative isolate pb-16 sm:pb-20">
+        <div className="relative">
+          <Navbar />
+
+          <section className="pt-16 sm:pt-20 lg:pt-24">
+            <Container>
+              <div className="mx-auto max-w-4xl space-y-6 text-center sm:text-left">
+                <p className="type-label text-primary">ZakuVerse</p>
+                <h1 className="font-heading text-[clamp(3rem,8.4vw,6.5rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.045em] text-white">
+                  Where Code, AI &amp; Biology Converge.
+                </h1>
+                <p className="max-w-3xl text-base leading-relaxed text-white/74 sm:text-lg">
+                  ZakuVerse is a Pakistan-based execution studio for web development, AI automation, technical SEO,
+                  bioinformatics, and Next.js delivery. We help teams launch conversion-focused systems that are easier
+                  to crawl, easier to trust, and easier to scale through implementation-first technical strategy.
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-4 pt-2 sm:justify-start">
+                  <TransitionLink
+                    href="/services"
+                    onBeforeNavigate={() => trackCTAClick("explore-services", "/")}
+                    className="inline-flex h-12 items-center rounded-full border border-primary bg-primary px-8 text-[0.96rem] font-semibold uppercase tracking-[0.05em] text-black transition-colors hover:border-[#4ced7f] hover:bg-[#4ced7f]"
+                  >
+                    Explore Services
+                  </TransitionLink>
+                  <TransitionLink
+                    href="/ai-search-optimization"
+                    className="inline-flex h-12 items-center rounded-full border border-white/55 px-8 text-[0.96rem] font-semibold uppercase tracking-[0.05em] text-white transition-colors hover:border-white hover:bg-white/5"
+                  >
+                    AI Search Optimization
+                  </TransitionLink>
+                  <TransitionLink
+                    href="/ai-crawler-log-analysis"
+                    className="inline-flex h-12 items-center rounded-full border border-white/55 px-8 text-[0.96rem] font-semibold uppercase tracking-[0.05em] text-white transition-colors hover:border-white hover:bg-white/5"
+                  >
+                    AI Crawler Analysis
+                  </TransitionLink>
+                </div>
+              </div>
+            </Container>
+          </section>
+
+          <ServicesSection />
+          <WhyChooseUsSection />
+          <HowItWorksSection />
+          <HomeQuickAnswerSection />
+          <TestimonialsStripSection />
+          <PortfolioPreviewSection />
+          <CtaSection />
+          <Footer />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section ref={scopeRef} className="relative isolate">
@@ -131,6 +227,8 @@ export function ScrollExperience() {
                 rootRef={heroRootRef}
                 titleRef={heroTitleRef}
                 subtitleRef={heroSubtitleRef}
+                descriptionRef={heroDescriptionRef}
+                servicesRef={heroServicesRef}
                 ctaRef={heroCtaRef}
               />
 
@@ -148,13 +246,20 @@ export function ScrollExperience() {
               />
 
               {/* ─── Scroll hint ─── */}
-              <p className="pointer-events-none absolute bottom-7 left-1/2 z-40 -translate-x-1/2 text-[0.68rem] font-semibold uppercase tracking-[0.3em] text-white/52">
+              <p className="pointer-events-none absolute bottom-6 right-6 z-40 hidden text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-white/50 xl:block">
                 Scroll To Explore
               </p>
             </div>
           </div>
 
           {/* ─── Footer — inside smooth-content so Lenis tracks full page height ─── */}
+          <ServicesSection />
+          <WhyChooseUsSection />
+          <HowItWorksSection />
+          <HomeQuickAnswerSection />
+          <TestimonialsStripSection />
+          <PortfolioPreviewSection />
+          <CtaSection />
           <Footer />
         </div>
       </div>

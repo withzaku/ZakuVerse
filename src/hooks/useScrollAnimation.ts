@@ -21,6 +21,7 @@ function initScrollAnimationPlugins() {
 }
 
 type ScrollAnimationRefs = {
+  enabled?: boolean;
   scopeRef: RefObject<HTMLDivElement | null>;
   scrollContainerRef: RefObject<HTMLDivElement | null>;
   viewportStageRef: RefObject<HTMLDivElement | null>;
@@ -31,6 +32,8 @@ type ScrollAnimationRefs = {
   heroRootRef: RefObject<HTMLDivElement | null>;
   heroTitleRef: RefObject<HTMLHeadingElement | null>;
   heroSubtitleRef: RefObject<HTMLParagraphElement | null>;
+  heroDescriptionRef: RefObject<HTMLParagraphElement | null>;
+  heroServicesRef: RefObject<HTMLParagraphElement | null>;
   heroCtaRef: RefObject<HTMLDivElement | null>;
   servicesRootRef: RefObject<HTMLDivElement | null>;
   servicesLabelRef: RefObject<HTMLParagraphElement | null>;
@@ -65,9 +68,14 @@ function wrapWordsFallback(element: HTMLElement) {
 
 export function useScrollAnimation(refs: ScrollAnimationRefs) {
   initScrollAnimationPlugins();
+  const enabled = refs.enabled ?? true;
 
   useGSAP(
     () => {
+      if (!enabled) {
+        return;
+      }
+
       const {
         scrollContainerRef,
         viewportStageRef,
@@ -78,6 +86,8 @@ export function useScrollAnimation(refs: ScrollAnimationRefs) {
         heroRootRef,
         heroTitleRef,
         heroSubtitleRef,
+        heroDescriptionRef,
+        heroServicesRef,
         heroCtaRef,
         servicesRootRef,
         servicesLabelRef,
@@ -99,6 +109,8 @@ export function useScrollAnimation(refs: ScrollAnimationRefs) {
         !heroRootRef.current ||
         !heroTitleRef.current ||
         !heroSubtitleRef.current ||
+        !heroDescriptionRef.current ||
+        !heroServicesRef.current ||
         !heroCtaRef.current ||
         !servicesRootRef.current ||
         !servicesLabelRef.current ||
@@ -252,6 +264,30 @@ export function useScrollAnimation(refs: ScrollAnimationRefs) {
           ease: "none",
         },
         9,
+      );
+
+      /* Description fades out with the same hero rhythm */
+      timeline.to(
+        heroDescriptionRef.current,
+        {
+          autoAlpha: 0,
+          y: -24,
+          duration: 13,
+          ease: "none",
+        },
+        10,
+      );
+
+      /* Top services line fades right after the description */
+      timeline.to(
+        heroServicesRef.current,
+        {
+          autoAlpha: 0,
+          y: -20,
+          duration: 12,
+          ease: "none",
+        },
+        11,
       );
 
       /* CTA buttons fade out last */
@@ -560,7 +596,7 @@ export function useScrollAnimation(refs: ScrollAnimationRefs) {
     },
     {
       scope: refs.scopeRef,
-      dependencies: [],
+      dependencies: [enabled],
       revertOnUpdate: true,
     },
   );

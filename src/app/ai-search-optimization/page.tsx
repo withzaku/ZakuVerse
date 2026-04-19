@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout";
-import { buttonClassName } from "@/components/ui";
+import { QuickAnswerBlock, buttonClassName } from "@/components/ui";
+import { createSpeakableSchema, serializeSchema } from "@/lib/schema";
 import { createPageMetadata } from "@/lib/seo";
 import {
   createAiSearchOptimizationStructuredData,
@@ -24,27 +25,34 @@ export const metadata: Metadata = createPageMetadata({
   ],
 });
 
-const frameworkSteps = [
+const citeFrameworkSteps = [
   {
-    title: "Entity Clarity",
+    title: "C - Clarify Entity Signals",
     description:
-      "Align brand, service, and expertise signals so search systems can confidently identify what your business does and who it serves.",
+      "Define one unambiguous service-entity statement per route so AI systems can map your page to the right buyer intent.",
   },
   {
-    title: "Answer Architecture",
+    title: "I - Isolate Intent Blocks",
     description:
-      "Restructure key pages around direct, evidence-backed answers that are easy for AI systems to parse and cite.",
+      "Separate definition, implementation, and commercial-intent answers into dedicated blocks instead of blending them.",
   },
   {
-    title: "Technical Readiness",
+    title: "T - Tie Claims To Proof",
     description:
-      "Harden crawlability, metadata consistency, schema coverage, and content accessibility for both browser and agentic retrieval paths.",
+      "Attach measurable evidence, case studies, and benchmark references directly next to major claims.",
   },
   {
-    title: "Signal Expansion",
+    title: "E - Encode For Retrieval",
     description:
-      "Strengthen authority through internal links, proof assets, and channel consistency that reinforce topic trust beyond a single page.",
+      "Encode answers with schema, clean heading hierarchy, and crawl-stable internal links so models can consistently retrieve them.",
   },
+];
+
+const quickAnswerFacts = [
+  "Primary outcome: improve inclusion in AI answer engines for high-intent commercial queries.",
+  "Primary method: apply the ZakuVerse CITE Framework to service pages and proof assets.",
+  "Primary technical layer: enforce schema clarity, index hygiene, and crawl-priority routing.",
+  "Primary business KPI: increase qualified inquiries from AI-influenced search journeys.",
 ];
 
 const impactSignals = [
@@ -84,6 +92,11 @@ const faqEntries: FaqEntry[] = [
 
 export default function AiSearchOptimizationPage() {
   const structuredData = createAiSearchOptimizationStructuredData(faqEntries);
+  const speakableSchema = createSpeakableSchema({
+    path: "/ai-search-optimization",
+    name: "AI Search Optimization Quick Answer",
+    cssSelectors: ["#quick-answer-ai-search h2", "#quick-answer-ai-search p", "#quick-answer-ai-search li"],
+  });
 
   return (
     <>
@@ -94,6 +107,7 @@ export default function AiSearchOptimizationPage() {
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(entry) }}
         />
       ))}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeSchema(speakableSchema) }} />
 
       <section className="relative overflow-hidden pt-20 sm:pt-24 lg:pt-28">
         <Container>
@@ -103,9 +117,24 @@ export default function AiSearchOptimizationPage() {
               Get Found In AI Search, Not Just Blue Links.
             </h1>
             <p className="type-body max-w-3xl text-white/74">
-              AI search is changing discovery behavior fast. This service is designed for founders and teams that need
-              practical visibility improvements across Google Search, answer engines, and emerging agentic flows.
+              AI Search Optimization is the engineering process of making your commercial pages legible, trustworthy,
+              and reusable for modern answer engines. Instead of chasing generic rankings, ZakuVerse prioritizes
+              citation-ready page architecture: precise entity statements, intent-separated answer blocks, measurable
+              proof, and machine-readable schema signals. This approach improves how systems like Google AI answers,
+              Perplexity, and assistant workflows interpret what you do, who you serve, and why your claims are
+              credible. Execution focuses on three outcomes: higher inclusion probability in AI-generated answers,
+              stronger crawl and index consistency on money pages, and better-qualified inquiry traffic from
+              problem-aware users. If your traffic exists but your authority is still under-cited, this service closes
+              that gap with implementation-first SEO rather than theory-only recommendations.
             </p>
+
+            <QuickAnswerBlock
+              id="quick-answer-ai-search"
+              title="Quick Answer: How do you improve AI search visibility?"
+              summary="Use the ZakuVerse CITE Framework to connect clear entity definitions, intent-specific answers, proof-backed claims, and machine-readable encoding across your highest-value routes."
+              facts={quickAnswerFacts}
+            />
+
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 href="/contact"
@@ -160,12 +189,12 @@ export default function AiSearchOptimizationPage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="mb-8 max-w-4xl space-y-3">
-            <p className="type-label text-primary">Methodology</p>
-            <h2 className="type-h2 max-w-4xl">A focused framework built for AI-era discovery.</h2>
+            <p className="type-label text-primary">Named Framework</p>
+            <h2 className="type-h2 max-w-4xl">The ZakuVerse CITE Framework for AI Visibility.</h2>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2">
-            {frameworkSteps.map((step) => (
+            {citeFrameworkSteps.map((step) => (
               <article
                 key={step.title}
                 className="border border-white/14 bg-white/[0.02] p-6 transition-all duration-300 hover:border-primary/40"

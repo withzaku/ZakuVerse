@@ -18,6 +18,14 @@ export function NeuralBall({ motionRef }: NeuralBallProps) {
   const frameRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const motionMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motionMediaQuery.matches) {
+      if (frameRef.current) {
+        frameRef.current.style.transform = "translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1)";
+      }
+      return;
+    }
+
     let rafId = 0;
 
     const animate = (time: number) => {

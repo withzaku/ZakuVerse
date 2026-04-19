@@ -3,6 +3,14 @@
 let overlayEl: HTMLDivElement | null = null;
 let isAnimating = false;
 
+function prefersReducedMotion() {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    return false;
+  }
+
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 /** Called by PageTransitionOverlay on mount to register the DOM element */
 export function registerTransitionOverlay(el: HTMLDivElement | null) {
   overlayEl = el;
@@ -18,7 +26,7 @@ export function navigateWithTransition(
   href: string,
   push: (href: string) => void,
 ) {
-  if (!overlayEl || isAnimating) {
+  if (!overlayEl || isAnimating || prefersReducedMotion()) {
     push(href);
     return;
   }

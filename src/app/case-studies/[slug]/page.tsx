@@ -186,6 +186,31 @@ export default async function GeneratedCaseStudyPage({ params }: CaseStudyPagePr
           </div>
         </Container>
       </section>
+
+      <section className="pb-16 sm:pb-20">
+        <Container>
+          <div className="border border-primary/24 bg-primary/10 p-7 sm:p-8">
+            <p className="type-label text-primary">Next Steps</p>
+            <h2 className="mt-3 font-heading text-3xl font-semibold uppercase tracking-[-0.03em] text-white sm:text-4xl">
+              Apply this playbook to your own growth routes.
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/78 sm:text-base">
+              Move from insight to implementation with a focused service sprint and route-level execution plan.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href={study.relatedServiceHref} className={buttonClassName({ variant: "secondary", size: "md" })}>
+                Explore {study.relatedServiceLabel}
+              </Link>
+              <Link href="/services" className={buttonClassName({ variant: "secondary", size: "md" })}>
+                View Full Services
+              </Link>
+              <Link href="/contact" className={buttonClassName({ variant: "gradient", size: "md" })}>
+                Book Strategy Call
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
     </>
   );
 }
