@@ -14,6 +14,23 @@ const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
+function SunIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2.2M12 19.8V22M4.93 4.93l1.56 1.56M17.5 17.5l1.57 1.57M2 12h2.2M19.8 12H22M4.93 19.07l1.56-1.56M17.5 6.5l1.57-1.57" />
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3a7 7 0 1 0 11.5 11.5Z" />
+    </svg>
+  );
+}
+
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -104,14 +121,15 @@ export function Navbar() {
                 type="button"
                 onClick={toggleTheme}
                 className={cn(
-                  "ml-2 inline-flex h-9 items-center rounded-full border px-4 text-xs font-semibold uppercase tracking-[0.12em] transition-colors",
+                  "ml-2 inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors",
                   theme === "dark"
                     ? "border-primary/35 text-white hover:border-primary"
                     : "border-primary/45 text-black hover:border-primary",
                 )}
                 aria-label="Toggle dark and light theme"
               >
-                {theme === "dark" ? "Light" : "Dark"}
+                {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+                <span className="sr-only">{theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}</span>
               </button>
             </nav>
 
@@ -120,14 +138,15 @@ export function Navbar() {
                 type="button"
                 onClick={toggleTheme}
                 className={cn(
-                  "font-sans inline-flex h-9 items-center justify-center rounded-full border px-3 text-[0.68rem] font-semibold uppercase tracking-[0.12em] transition-colors",
+                  "font-sans inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors",
                   theme === "dark"
                     ? "border-primary/35 text-white hover:border-primary"
                     : "border-primary/45 text-black hover:border-primary",
                 )}
                 aria-label="Toggle dark and light theme"
               >
-                {theme === "dark" ? "Light" : "Dark"}
+                {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+                <span className="sr-only">{theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}</span>
               </button>
 
               <button
