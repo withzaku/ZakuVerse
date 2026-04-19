@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Montserrat } from "next/font/google";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -85,7 +86,9 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="min-h-screen bg-background text-white antialiased">
-        <Analytics />
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
         <Clarity />
         <AppShell>{children}</AppShell>
         <SpeedInsights />
