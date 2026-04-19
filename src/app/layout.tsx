@@ -76,13 +76,12 @@ export default function RootLayout({
     (function () {
       try {
         var savedTheme = localStorage.getItem("zv-theme");
-        var preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        var theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : preferred;
+        var theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "light";
         var root = document.documentElement;
         root.classList.remove("light", "dark");
         root.classList.add(theme);
       } catch (error) {
-        document.documentElement.classList.add("dark");
+        document.documentElement.classList.add("light");
       }
     })();
   `;

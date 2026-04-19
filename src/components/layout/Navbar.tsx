@@ -37,10 +37,10 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof document === "undefined") {
-      return "dark";
+      return "light";
     }
 
-    return document.documentElement.classList.contains("light") ? "light" : "dark";
+    return document.documentElement.classList.contains("dark") ? "dark" : "light";
   });
 
   useEffect(() => {
